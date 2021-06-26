@@ -5,11 +5,13 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const PORT = process.env.PORT;
 
+//?adawdawdawdadaw
+
 const pool = mysql.createConnection({
-    host: 'localhost',
-    user: 'jj',
-    password: 'V1d3G0w0',
-    database: 'york_mbase'
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database
   });
   app.set('view engine', 'ejs');
 
