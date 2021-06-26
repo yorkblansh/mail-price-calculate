@@ -1,0 +1,94 @@
+<html>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+  const socket = io();
+  $(document).ready(function() {
+  $('#sub_btn').click(function(){
+      var obj_mess = {
+          id: $('#id').val(),
+          town_name: $('#city').val(),
+          weight: $('#pos_weight').val(),
+          region: $('#region').val()
+      };
+      
+    socket.emit('form_mess', obj_mess);
+  });
+
+  socket.on('otvet', (d)=>{
+console.dir(d);
+if(d == 'alert_town_doesnot_exist'){
+    alert('Город не найден, укажите область');
+}else{
+  $('#bez_nds').val(d.bez_nds);
+  $('#s_nds').val(d.s_nds);
+}
+  });
+
+
+});
+
+//   $('#main_form').submit(function(){
+        
+//         //socket.emit('message', "Input");
+//         //$('#Input').val('');
+//         return false;
+//       });
+</script>
+
+
+<style>
+    .colonki{
+        
+        display: grid;
+        
+      grid-template-columns:  max-content max-content max-content max-content max-content max-content;
+      grid-column-gap: 10px;
+      text-align: center;
+     
+    }
+    .form_style{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+</style>
+
+    <head></head>
+
+    <body>
+    
+       <div class="form_style" action="" id="main_form">
+          
+        <div class="colonki">
+
+            <!-- <div>ID</div> -->
+            <div>Название города</div>
+            <div>Область, если нужно</div>
+            <div> Вес посылки</div>
+            <input id="sub_btn" type="button" value="Рассчитать">
+
+            <div>Сумма без НДС</div>
+            <div>Сумма с НДС</div>
+
+
+           <!-- <div><input type="text" id="id" ></div> -->
+        
+      
+        <div> <input type="text" id="city" ></div>
+        <div> <input type="text" id="region" ></div>
+        <div> <input type="text" id="pos_weight" ></div>
+        <div></div>
+
+        <div> <input type="text" id="bez_nds" ></div>
+        <div> <input type="text" id="s_nds" ></div>
+         
+        </div>
+   
+        
+    </div>
+
+   
+    </body>
+
+</html>
