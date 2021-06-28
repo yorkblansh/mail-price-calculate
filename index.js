@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const PORT = process.env.PORT;
+// проба коммента
 // ^ Модули npm и настройка порта
 
 
