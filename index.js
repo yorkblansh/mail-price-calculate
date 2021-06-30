@@ -7,7 +7,7 @@ const PORT = process.env.PORT;
 // проба коммента
 // ^ Модули npm и настройка порта
 
-
+var gg = {};
 const pool = mysql.createConnection({//Подключение к бд mysql
     host: process.env.host,
     user: process.env.user,
