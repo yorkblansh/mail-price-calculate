@@ -6,8 +6,7 @@ const io = require('socket.io')(server);
 const PORT = process.env.PORT;
 // проба коммента
 // ^ Модули npm и настройка порта
-//123
-var gg = {};
+
 const pool = mysql.createConnection({//Подключение к бд mysql
     host: process.env.host,
     user: process.env.user,
