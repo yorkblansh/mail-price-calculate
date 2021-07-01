@@ -15,10 +15,11 @@ const pool = mysql.createConnection({//Подключение к бд mysql
   });
 
 
-  app.set('view engine', 'ejs');//Настройка шаблонизатора (страница *.html или *.ejs)
-
+ // app.set('view engine', 'ejs');//Настройка шаблонизатора (страница *.html или *.ejs)
+//app.set('view engine', 'html');
   app.get('/', function (req, res) {//Выдача страницы пользователю по адресу -> http://77.246.158.51:5006/
-    res.render('index');
+      res.sendFile(__dirname + '/views/index_prod.html');
+   // res.sendFile('view/index_prod.html');
   });
    
   server.listen(PORT,()=> {console.log(`Server some text started( lichniy kabinet ) on port ${PORT}`)});
@@ -39,6 +40,11 @@ sql_query = `SELECT functions.first_500, functions.next_500, functions.t_first, 
 pool.query(sql_query, function(err, results) {//Запрос в бд
 
 try{
+  if(d.weight == ''){
+    console.log(e);
+    socket.emit('otvet', 'alert_noweight');//Если ничего не введено, пользователь получает уведомление
+    return;
+  }
   //Формула для вычисления суммы без ндс
    var final_bez_nds = parseFloat(results[0].t_first.replace(',','.')) + Math.ceil((Number(d.weight) - 500)/500) * parseFloat(results[0].t_next.replace(',','.'));
   console.log(final_bez_nds);
@@ -54,6 +60,16 @@ socket.emit('otvet', otvet);//Отправка "ответа" пользоват
 
   }catch(e){
 
+    if(d.town_name == ''){
+      console.log(e);
+      socket.emit('otvet', 'alert_town_didnotenter');//Если ничего не введено, пользователь получает уведомление
+return;
+  }
+  if(d.weight == ''){
+    console.log(e);
+    socket.emit('otvet', 'alert_noweight');//Если ничего не введено, пользователь получает уведомление
+    return;
+  }
   if(d.region == ''){
 
   console.log(e);

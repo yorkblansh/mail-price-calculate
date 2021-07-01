@@ -1,0 +1,305 @@
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+
+
+.text-input{
+	position: relative;
+	margin-top: 50px;
+	}
+	.div_c{
+	width:100%;
+	height:7%;
+	font-family:comic sans ms;
+	color:#000000;
+	font-size:14px;
+	line-height:  5px;
+	padding-top: 5px;
+	}
+	input[type="text"]{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	outline: none;
+	border: 1px solid #000000;
+	border-radius: 3px;
+	transition: all 0.1s ease-out;
+	font-family:comic sans ms;
+	}
+	body{
+	background:#fc560f;
+	color:#FFFFFF;
+	width:800px;
+	margin:0 auto;
+	}
+	.div1{
+	background:#f79148;
+	color:#FFFFFF;
+	width:100%;
+	height:7%;
+	font-size:18px;
+	border:1px solid #000000;
+	}
+	.div2{
+	background:#f79148;
+	color:#0000FF;
+	width:20%;
+	height:400px;
+	font-size:20px;
+	border:1px solid #000000;
+	float:left;
+	}
+	.div3{
+	background:#f78d6d;
+	color:#000000;
+	width:100%;
+	height:400px;
+	font-size:18px;
+	border:1px solid #000000;
+	/*margin-left:158px;
+	text-indent: 5%;*/
+	font-family:comic sans ms;
+	}
+	.div4{
+	background:#f79148;
+	color:#FFFFFF;
+	width:798px;
+	height:50px;
+	font-size:18px;
+	
+	border:1px solid #000000;
+	}
+	.div5{
+	background:#f78d6d;
+	color:#000000;
+	width:80%;
+	height:400px;
+	font-size:18px;
+	border:1px solid #000000;
+	margin-left:158px;
+	font-family:comic sans ms;
+	}
+	.div2 li{
+	list-style-type:none;
+	font-size:16px;
+	font-family:comic sans ms;	
+	}
+	.div2 a{
+	text-decoration:none;
+	color:#000000;
+		}
+	input[type="submit"]
+	{
+	width:220px;
+	margin:32px;
+	margin-top: 10px;
+	padding:10px;
+	border-radius:5px;
+	border:1px solid #ff3b00;	
+	background:#f79148;
+	font-family:comic sans ms;	
+	}
+    input[type="text"]{
+        width: 200px;
+    }
+	.submit:hover{
+	color:#000000; 	
+	background:#fc560f;
+	}
+	.image{
+		margin-right: 2px;
+		margin-top: 2px; 
+	}
+	.image2{
+		margin-right: 1px;
+		margin-top: 2px; 
+		margin-left: 1px;
+	}
+	.email{
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 100px;	
+	padding: 10px;
+	margin-left: 32px;
+	}
+	.name{
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 100px;	
+	padding: 10px;
+	margin: 0px;
+	}
+	.message{
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 200px;
+	height: 60px;	
+	padding: 10px;
+	margin-left: 32px;
+	}
+	.div3 td {
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 150px;
+	height: 20px;	
+	padding: 10px;
+	margin-left: 32px;
+	font-size:14px;	
+	}
+	.div3 th {
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 100px;
+	height: 20px;	
+	padding: 10px;
+	margin-left: 32px;
+	/*text-indent: -40%;*/
+	font-size:16px;	
+	color:#000000;
+	}
+	.div3 table{
+	margin-left: 32px;
+	}
+	.div5 td {
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 150px;
+	height: 20px;	
+	padding: 10px;
+	margin-left: 32px;
+	font-size:14px;	
+	}
+	.div5 th {
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 100px;
+	height: 20px;	
+	padding: 10px;
+	margin-left: 32px;
+	/*text-indent: -40%;*/
+	font-size:16px;	
+	}
+	.div5 table{
+	margin-left: 32px;
+	}
+	.reg {
+	border-radius:5px;
+	border:1px solid #ff3b00;
+	width: 100px;	
+	padding: 10px;
+	margin: 10px;
+	}
+
+</style>
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+  const socket = io();
+  $(document).ready(function() {
+  $('#sub_btn').click(function(){
+      var obj_mess = {
+          id: $('#id').val(),
+          town_name: $('#city').val(),
+          weight: $('#pos_weight').val(),
+          region: $('#region').val()
+      };
+      
+    socket.emit('form_mess', obj_mess);
+  });
+
+  socket.on('otvet', (d)=>{
+console.dir(d);
+if(d == 'alert_town_doesnot_exist'){
+    alert('Город не найден, укажите область');
+}
+if(d == 'alert_town_didnotenter'){
+	alert('Введите город');
+}
+if(d == 'alert_noweight'){
+	alert('Введите вес посылки');
+}
+if(d != 'alert_town_doesnot_exist' && d!= 'alert_town_didnotenter' && d!='alert_noweight'){
+  $('#bez_nds').val(d.bez_nds);
+  $('#s_nds').val(d.s_nds);
+}
+  });
+
+
+});
+
+//   $('#main_form').submit(function(){
+        
+//         //socket.emit('message', "Input");
+//         //$('#Input').val('');
+//         return false;
+//       });
+</script>
+    <head>
+    <title>Расчет стоимости доставки</title>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" type="text/css" href="Style.css"> -->
+    
+
+    </head>
+
+    <body>
+    <div class="div1">
+    </div>
+    
+    <div class="div3 ">
+       
+        <table>
+            <tr>
+                <th>Название города</th><th>Область, если нужно</th><th>Вес посылки</th>
+            </tr>
+            <tr>
+                <th>    <div> <input class="form-control" type="text" id="city" ></div></th><th><div> <input class="form-control" type="text" id="region" ></div></th><th><div> <input class="form-control" type="text" id="pos_weight" ></div></th>
+            </tr>
+        </table>
+        <input id="sub_btn" type="submit" value="Рассчитать">
+        <table>
+            <tr>
+                <th>Сумма без НДС</th><th>Сумма с НДС</th>
+            </tr>
+            <tr>
+                <th><div> <input class="form-control" type="text" id="bez_nds" ></div></th><th><div> <input class="form-control" type="text" id="s_nds" ></div> </th>
+            </tr>
+			
+
+				
+
+			
+
+        </table>
+		<br>
+        <div>	<form action="https://docs.google.com/spreadsheets/d/1GUbW5xz4PwpZnp2RkIuJepY9P6EtNcHKBAtcWZwjBnU/edit?usp=sharing" target="_blank">
+			<button class="btn btn-primary btn-sm">Открыть исходные данные БД в виде таблиц</button>
+		   </form></div> 
+		   
+		   <div>	<form action="https://gitlab.com/yorkblansh/mail_calculate" target="_blank">
+			<button class="btn btn-outline-dark">Открыть проект на GitLab</button>
+		   </form></div> 
+	
+    </div>
+        <div class="div1">
+    </div>
+    <div class="div_c">
+        <h6>
+			
+			
+				
+        Данный калькулятор разработали:<br> <p>
+        Студенты Луганского Государственного Университета имени Владимира Даля<br> <p>
+        группы ИТ-682<br> <p>
+        Еремеев Данил Михайлович и Чепелев Олев Евгеньевич
+    </h6>
+    </div>
+        </body>
+
+</html>
