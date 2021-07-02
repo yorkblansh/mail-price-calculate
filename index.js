@@ -7,13 +7,12 @@ const PORT = process.env.PORT;
 // проба коммента
 // ^ Модули npm и настройка порта
 
-const pool = mysql.createConnection({//Подключение к бд mysql
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database,
-    123:123
-  });
+ const pool = mysql.createConnection({//Подключение к бд mysql
+     host: process.env.host,
+     user: process.env.user,
+     password: process.env.password,
+     database: process.env.database
+   });
 
 
  // app.set('view engine', 'ejs');//Настройка шаблонизатора (страница *.html или *.ejs)
