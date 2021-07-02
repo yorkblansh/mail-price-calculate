@@ -11,7 +11,8 @@ const pool = mysql.createConnection({//Подключение к бд mysql
     host: process.env.host,
     user: process.env.user,
     password: process.env.password,
-    database: process.env.database
+    database: process.env.database,
+    123:123
   });
 
 
