@@ -10,7 +10,7 @@
 
 **Клиент:** Html(CSS), Socket.io - Client, Jquery, 
 
-**Сервер:** Nodejs(Express.js, Socket.io, mysql2, Шаблонизатор Ejs)
+**Сервер:** Nodejs(Express.js, Socket.io, mysql2)
 
   
 ## Приложения разработали
