@@ -13,7 +13,9 @@ const PORT = process.env.PORT;
      password: process.env.password,
      database: process.env.database
    });
-let uytrreq = {};
+let uytrreq = {
+  'hj':123
+};
 let y =1;
  // app.set('view engine', 'ejs');//Настройка шаблонизатора (страница *.html или *.ejs)
 //app.set('view engine', 'html');
