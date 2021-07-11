@@ -13,17 +13,12 @@ const PORT = process.env.PORT;
      password: process.env.password,
      database: process.env.database
    });
-let uytrreq = {
-  'hj':123,
-  'qwq':789,
-  'newletter':147
-};
-let y =1;
+
  // app.set('view engine', 'ejs');//Настройка шаблонизатора (страница *.html или *.ejs)
-//app.set('view engine', 'html');
+
   app.get('/', function (req, res) {//Выдача страницы пользователю по адресу -> http://77.246.158.51:5006/
       res.sendFile(__dirname + '/views/index_prod.html');
-   // res.sendFile('view/index_prod.html');
+ 
   });
    
   server.listen(PORT,()=> {console.log(`Server some text started( lichniy kabinet ) on port ${PORT}`)});
