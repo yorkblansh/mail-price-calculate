@@ -21,6 +21,9 @@ const PORT = process.env.PORT;
 
   io.on('connection', socket => {//Callback функция для подключения пользователя к сокету при выдаче страницы
 
+socket.on('incometest', t =>{
+socket.emit('outcome','otvet_income234');
+});
 
     socket.on('form_mess', d =>{//Если пользователь отправляет форму, разбираем приниятый обьект
       
