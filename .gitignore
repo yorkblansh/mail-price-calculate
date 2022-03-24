@@ -1,2 +1,4 @@
 .env
 index_prod.txt
+
+node_modules
